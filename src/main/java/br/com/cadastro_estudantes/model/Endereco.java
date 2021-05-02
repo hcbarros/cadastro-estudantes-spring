@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -14,9 +16,12 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@NotNull(message = "O CEP não deve ser nulo!")
 	@Pattern(regexp = "[0-9]{5}-[0-9]{3}")
 	private String cep;
 	
+	@NotNull(message = "A rua não deve ser nula!")
+	@NotBlank(message = "A rua não deve estar em branco!")
 	@Size(max = 120, message = "A rua deve possuir no máximo 120 caracteres!")
 	private String rua;
 	
@@ -28,8 +33,12 @@ public class Endereco {
 	@Size(max = 100, message = "O bairro deve possuir no máximo 100 caracteres!")
 	private String bairro;
 	
+	@NotNull(message = "A cidade não deve ser nula!")
+	@NotBlank(message = "A cidade não deve estar em branco!")
 	private String cidade;
 	
+	@NotNull(message = "O estado não deve ser nulo!")
+	@NotBlank(message = "O estado não deve estar em branco!")
 	private String estado;
 	
 	

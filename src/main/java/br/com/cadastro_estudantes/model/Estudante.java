@@ -13,6 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -23,9 +25,12 @@ public class Estudante {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotNull(message = "O nome não deve ser nulo!")
+	@NotBlank(message = "O nome não deve estar em branco!")
 	@Size(max = 100, message = "O nome deve possuir no máximo 100 caracteres!")
 	private String nome;
 	
+	@NotNull(message = "O data de nascimento não deve ser nula!")
 	private Date data_nasc;
 	
 	@Min(value = 1, message = "A série deve ser maior ou igual a 1!")
