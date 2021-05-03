@@ -11,6 +11,13 @@ header img {
     margin-left: 20px;
 }
 
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
 .app table {
     margin: 100px auto;
     width: 900px;
@@ -42,6 +49,10 @@ header img {
     padding-inline: 5px;
 }
 
+.mae, .endereco {
+    width: 100%;
+}
+
 fieldset {
     margin: 0 auto;
     width: 900px;
@@ -52,11 +63,18 @@ fieldset {
     padding-left: 20px;
 }
 
-.field-input input[type=date] {
+.field-input input {
     height: 30px;
+    width: 500px;
     border-radius: 0;
-    border: 1px solid #666;
+    border: none;
+    border-bottom: 1px solid #aaa;
     outline: none;
+}
+
+.field-input input[type=date] {
+    border: 1px solid #aaa;
+    width: initial;
 }
 
 legend {
@@ -73,7 +91,113 @@ legend {
     color: #666;
 }
 
-.mae tr {
+.mae tr, .endereco tr {
     height: 50px;
+}
+
+.buttons-editar {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.buttons-editar button {
+    font-size: 18px;
+    color: #666;
+    width: 130px;
+    height: 40px;
+    background-color: #fff;
+    outline: none;
+    border: 1px solid #666;
+    cursor: pointer;
+}
+
+.buttons-editar div:nth-child(2) {
+    margin-left: 20px;
+}
+
+.estados {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+}
+
+.estado, .drop {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -16px;
+    cursor: pointer;
+}
+
+.estado:hover, .drop:hover {
+    background-color: #ddd;
+}
+
+.estado-init {
+    margin-left: 30px;
+}
+
+.drop {
+    margin-top: 0;
+    border-top: none;
+    background-color: #fff;
+}
+
+.arrow {
+    margin-left: 20px;
+    margin-bottom: 3px;
+    height: 7px;
+    width: 7px;
+    border: solid #000;
+    border-width: 0 0 1px 1px;
+    transform: rotate(-45deg);
+}
+
+
+.hide {
+    display: none;
+}
+
+
+@media (max-width: 1000px) {
+    fieldset {
+      width: 90%;
+    }
+}
+
+@media (max-width: 690px) {
+    .field-input input[type=text] {
+        width: 60vw;
+    }    
+    fieldset {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .field-input input[type=text] {
+        width: 50vw;
+    }   
+    .buttons-editar button {
+        width: 27vw;
+    }
+}
+
+@media (max-width: 350px) {
+    .field-input input[type=text] {
+        width: 40vw;
+    }    
+    .field-input input[type=date] {
+        width: 40vw;
+    }    
+    fieldset {
+        width: 40vw;
+    }
+
 }
 

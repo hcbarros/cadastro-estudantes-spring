@@ -1,5 +1,6 @@
 
 import '../assets/css/index.css';
+import loader from '../assets/images/loader.gif';
 import React, { useState, useEffect } from 'react';
 import {Redirect} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,6 +17,7 @@ export default function Main() {
     const [init, setInit] = useState(true);
     const [studants, setStudants] = useState([]);
     const [redirect, setRedirect] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [local, setLocal] = useState(null);
 
 
@@ -34,6 +36,7 @@ export default function Main() {
 
         const stds = await Api.getStudants();        
         setStudants(stds);
+        setLoading(false);
     }, [init]);
 
     return (
@@ -44,6 +47,11 @@ export default function Main() {
 
             {redirect && <Redirect to={local} />}
 
+            {loading && <div className="loading"><img src={loader} 
+            alt="imagem gif carregando" /></div>}
+
+            {!loading &&
+            
             <table>
                 <caption>Estudantes</caption>
                 <tr>
@@ -52,6 +60,8 @@ export default function Main() {
                     <th>Série</th>
                     <th>Endereço</th>
                     <th>Mãe</th>
+                    <th/>
+                    <th/>
                 </tr>
                     {studants.map(s => 
                             <tr>
@@ -70,7 +80,7 @@ export default function Main() {
 
                     )}
                 
-            </table>
+            </table>}
 
         </div>
     );
