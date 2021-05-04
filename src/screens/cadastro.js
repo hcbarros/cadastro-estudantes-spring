@@ -1,3 +1,4 @@
+
 import loader from '../assets/images/loader.gif';
 import '../assets/css/index.css';
 import React, { useState, useEffect, useRef } from 'react';
@@ -12,7 +13,7 @@ import { cepMask } from '../components/cepMask';
 import { getCEP } from '../components/getCEP';
 
 
-export default function Mae() {
+export default function Cadastro() {
 
     const student = useSelector(state => state.student);
     const [init, setInit] = useState(true);

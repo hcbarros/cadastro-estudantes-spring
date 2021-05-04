@@ -18,4 +18,5 @@ export const getCEP = async (cep, rua, complemento, bairro, cidade) => {
             return false;
         }
     }
+    else return false
 } 

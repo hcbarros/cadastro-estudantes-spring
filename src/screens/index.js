@@ -28,8 +28,10 @@ export default function Main() {
     }
 
     const getDate = (miliseconds) => {
-        let d = new Date(miliseconds);
-        return d.toLocaleDateString();
+        let d = new Date(miliseconds)
+                .toISOString().substring(0,10);
+        const arr = d.split('-');
+        return `${arr[2]}/${arr[1]}/${arr[0]}`;
     }
 
     useEffect(async () => {
@@ -74,7 +76,8 @@ export default function Main() {
                                 <td><a href="#" 
                                     onClick={() => redirectTo("mae", s)}
                                     >Mãe</a></td>
-                                <td><img src={edit} alt="imagem de lápis" /></td>
+                                <td><img src={edit} onClick={() => redirectTo("estudante", s)} 
+                                alt="imagem de lápis" /></td>
                                 <td><img src={delet} alt="imagem de lixeira" /></td>
                             </tr>
 

@@ -5,7 +5,7 @@ import { useStateWithCallbackLazy } from 'use-state-with-callback';
 import { useSelector, useDispatch } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import Header from '../components/header';
-import { editarMae } from '../components/editarMae';
+import Api from '../api/api';
 import { cpfMask } from '../components/cpfMask';
 
 
@@ -22,13 +22,33 @@ export default function Mae() {
 
     const edit = async () => {
 
-       setLoading(true); 
-       const result = await editarMae(nome, cpf, datePay, student);
-       if(!result) return; 
+        if(!/\S/.test(nome.current.value) || !/\S/.test(cpf.current.value)) {
+            alert("Informe nome e CPF!")
+            return false;
+        }
+        if(cpf.current.value.length < 14) {
+            alert("CPF inválido!");
+            return false;
+        }
+    
+        const d = new Date(datePay.current.value); 
+
+        if(d.valueOf() < (Date.now() - 86400000)) {
+            alert("Informe uma data futura!");
+            return false;
+        }
+    
+        student.student.mae.nome = nome.current.value;
+        student.student.mae.cpf = cpf.current.value;
+        student.student.mae.data_pagamento = d.valueOf();
+    
+        setLoading(true);
+        const result =  await Api
+                .updateStudant(student.student.id, student.student);
 
         if(result.nome) setRedirect(true);
         else setLoading(false, () => 
-                alert("CPF inválido!"));
+                alert("Informe o CPF e data de pagamento!"));
     }
 
     useEffect(() => {
@@ -42,7 +62,7 @@ export default function Mae() {
 
     return (
 
-        <div className="endereco">
+        <div className="mae">
             
             <Header />
 

@@ -7,6 +7,8 @@ import './index.css';
 import Main from './screens/index';
 import Mae from './screens/mae';
 import Endereco from './screens/endereco';
+import EditarEstudante from './screens/editarEstudante';
+import Cadastro from './screens/cadastro';
 import reducer from './reducers/reducer';
 
 import reportWebVitals from './reportWebVitals';
@@ -22,6 +24,8 @@ ReactDOM.render(
                 <Route path="/" exact={true} component={Main} />
                 <Route path="/mae" component={Mae}/>
                 <Route path="/endereco" component={Endereco} />
+                <Route path="/estudante" component={EditarEstudante} />
+                <Route path="/cadastro" component={Cadastro} />
 
             </Switch>
         </BrowserRouter>
