@@ -1,5 +1,6 @@
 package br.com.cadastro_estudantes.config;
 
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.sql.Date;
@@ -159,7 +160,7 @@ public class DataLoader {
 			mae = new Mae("Maria Freud","226.998.750-07", datePay);
 			Estudante e25 = new Estudante("Sigmund Schlomo Freud", new Date(Long.valueOf("-3586636800000")), 3 , endereco, mae);
 			
-			List<Estudante> list = List.of(e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,
+			List<Estudante> list = Arrays.asList(e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,
 										e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25);
 			
 			repo.saveAll(list);					
