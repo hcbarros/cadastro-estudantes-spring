@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.cadastro_estudantes.model.Estudante;
@@ -15,6 +17,8 @@ import br.com.cadastro_estudantes.repositorio.EstudanteRepositorio;
 @Service
 public class EstudanteService {
 
+	private int index = 0;	
+	
 	@Autowired
 	private EstudanteRepositorio repoEstudante;
 	
@@ -34,8 +38,12 @@ public class EstudanteService {
 		return salvar(e);
 	}	
 	
-	public List<Estudante> buscarEstudantes() {
-		return repoEstudante.findAll();
+	public List<Estudante> buscarEstudantes(int pageNum) {
+		
+		Pageable paging = PageRequest.of(pageNum, 10);
+        Page<Estudante> pagedResult = repoEstudante.findAll(paging);
+
+		return pagedResult.toList();
 	}
 	
 	public Estudante buscarPorId(Long id) {
@@ -47,4 +55,7 @@ public class EstudanteService {
 		repoEstudante.deleteById(id);
 	}
 	
+	public long count() {
+		return repoEstudante.count();
+	}
 }

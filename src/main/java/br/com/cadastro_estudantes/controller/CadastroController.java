@@ -31,16 +31,21 @@ public class CadastroController  {
 
 	@Autowired
 	private EstudanteService service;
-
+	
 	
 	@GetMapping(value = "{id}")
 	public Estudante buscarEstudante(@PathVariable Long id) {
 		return service.buscarPorId(id);		
 	}
 
-	@GetMapping
-	public List<Estudante> buscarEstudantes() {
-		return service.buscarEstudantes();
+	@GetMapping(value = "/count")
+	public long count() {
+		return service.count();
+	}
+	
+	@GetMapping(value = "/list/{page}")
+	public List<Estudante> buscarEstudantes(@PathVariable int page) {
+		return service.buscarEstudantes(page);
 	}
 	
 	@PostMapping
