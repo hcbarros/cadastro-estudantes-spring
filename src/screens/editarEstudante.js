@@ -30,14 +30,14 @@ export default function EditarEstudante() {
 
         if(!/\S/.test(nome.current.value) || !/\S/.test(serie.current.value)) {
             alert("Informe nome e série!")
-            return false;
+            return;
         }
         
         const d = new Date(dateNasc.current.value); 
 
         if(d.valueOf() > (Date.now() - 86400000)) {
             alert("Informe uma data do passado!");
-            return false;
+            return;
         }
     
         student.student.nome = nome.current.value;

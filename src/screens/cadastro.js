@@ -10,22 +10,29 @@ import Header from '../components/header';
 import Api from '../api/api';
 import { numberMask } from '../components/numberMask';
 import { cepMask } from '../components/cepMask';
+import { cpfMask } from '../components/cpfMask';
+import { validaCPF } from '../components/validaCPF';
 import { getCEP } from '../components/getCEP';
 
 
 export default function Cadastro() {
 
-    const student = useSelector(state => state.student);
+    //const student = useSelector(state => state.student);
     const [init, setInit] = useState(true);
     const [state, setState] = useState("AC");
     const [redirect, setRedirect] = useState(false);
     const [loading, setLoading] = useStateWithCallbackLazy(false);
+    const nome = useRef(null);
+    const serie = useRef(1);
+    const dateNasc = useRef(null);
     const cep = useRef(null);
     const rua = useRef(null);
     const numero = useRef(null);
     const complemento = useRef(null);
     const bairro = useRef(null);
     const cidade = useRef(null);
+    const nomeMae = useRef(null);
+    const cpf = useRef(null);
     const datePay = useRef(null);
 
 
@@ -47,26 +54,64 @@ export default function Cadastro() {
 
     const edit = async () => {
 
+        if(!/\S/.test(nome.current.value) || !/\S/.test(serie.current.value)) {
+            alert("Informe nome e série!")
+            return;
+        }
+
         if(!/\S/.test(cep.current.value) || !/\S/.test(rua.current.value) || !/\S/.test(cidade.current.value)) {
             alert("Informe o CEP, rua e a cidade!")
             return;
         }
-       
+
+        const cpfValid = validaCPF(cpf.current.value);
+        if(!cpfValid) {
+            alert("CPF da mãe inválido!")
+            return;    
+        }
+
         const obj = await Api.getCEP(cep.current.value);
         if(!obj.cep) {
             alert("CEP inválido!");
             return;    
         }
 
-        student.student.endereco.cep = cep.current.value;
-        student.student.endereco.rua = rua.current.value;
-        student.student.endereco.numero = numero.current.value;
-        student.student.endereco.complemento = complemento.current.value;
-        student.student.endereco.bairro = bairro.current.value;
-        student.student.endereco.cidade = cidade.current.value;
-        student.student.endereco.estado = state;
+        const nasc = new Date(dateNasc.current.value); 
 
-        const result = await Api.updateStudant(student.student.id, student.student);
+        if(nasc.valueOf() > (Date.now() - 86400000)) {
+            alert("Informe uma data de nascimento do passado!");
+            return;
+        }
+
+        const pay = new Date(datePay.current.value); 
+
+        if(pay.valueOf() < (Date.now() - 86400000)) {
+            alert("Informe uma data futura para pagamento!");
+            return;
+        }
+
+        const student = {};
+        const endereco = {};
+        const mae = {};
+
+        student.nome = nome.current.value;
+        student.serie = serie.current.value;
+        student.data_nasc = nasc.valueOf();
+        endereco.cep = cep.current.value;
+        endereco.rua = rua.current.value;
+        endereco.numero = numero.current.value;
+        endereco.complemento = complemento.current.value;
+        endereco.bairro = bairro.current.value;
+        endereco.cidade = cidade.current.value;
+        endereco.estado = state;
+        mae.nome = nomeMae.current.value;
+        mae.cpf = cpf.current.value;
+        mae.data_pagamento = pay.valueOf();
+        student.endereco = endereco;
+        student.mae = mae;
+
+        setLoading(true);
+        const result = await Api.saveStudant(student);
 
         if(result.nome) setRedirect(true);
         setLoading(false, () => alert("Erro ao salvar os dados!"));
@@ -77,28 +122,26 @@ export default function Cadastro() {
         return  <tr>
                     <td><b>{label}</b></td>
                     <td className="field-input">
-                        <input type="text"  
+                        <input type={max == null ? "date" : "text"}  
                         maxLength={max} ref={ref} />
                     </td>    
                 </tr>    
     }
 
+    useEffect(() => {$(".drop").hide()},[init, loading])
+    
     useEffect(() => {
-
-        $(".drop").hide();
-        cep.current.value = student.student.endereco.cep;    
-        rua.current.value = student.student.endereco.rua;
-        numero.current.value = student.student.endereco.numero;
-        complemento.current.value = student.student.endereco.complemento;
-        bairro.current.value = student.student.endereco.bairro;
-        cidade.current.value = student.student.endereco.cidade;
-        setState(student.student.endereco.estado);
-    }, [init, loading]);
+        
+        datePay.current.value = new Date()
+                            .toISOString().substring(0,10);
+        dateNasc.current.value = new Date()
+                            .toISOString().substring(0,10);                            
+    }, [init]);
 
 
     return (
 
-        <div className="endereco">
+        <div className="cadastro">
             
             <Header />
 
@@ -111,11 +154,22 @@ export default function Cadastro() {
 
             <div>
 
-                <div className="text-editar">Editar</div>
+                <div className="text-editar">Cadastrar</div>
                 <fieldset>
-                    <legend>Endereço:</legend>
+                    <legend>Estudante:</legend>
 
                     <table>
+
+                        {getInput("Nome:", 100, nome)}
+                        {getInput("Data de nascimento:", null, dateNasc)}      
+                                    
+                        <tr>
+                            <td><b>Série:</b></td>
+                            <td className="field-input">
+                                <input type="text" onKeyUp={(evt) => numberMask(evt,true)} 
+                                onKeyDown={(evt) => numberMask(evt,true)} maxLength="1" ref={serie} />
+                            </td>    
+                        </tr>   
                         <tr>
                             <td><b>CEP:</b></td>
                             <td className="field-input">
@@ -155,7 +209,20 @@ export default function Cadastro() {
                                                 </div>)}
                                 </div>
                             </td>    
-                        </tr>                        
+                        </tr>
+
+                        {getInput("Nome da mãe:", 100, nomeMae)}
+                       
+                        <tr>
+                            <td><b>CPF da mãe:</b></td>
+                            <td className="field-input">
+                                <input type="text" onKeyUp={(evt) => cpfMask(evt)} 
+                                onKeyDown={(evt) => cpfMask(evt)} maxLength="14" ref={cpf} />
+                            </td>    
+                        </tr>   
+
+                        {getInput("Data de pagamento:", null, datePay)}
+                                           
                     </table>
 
                     <div className="buttons-editar">

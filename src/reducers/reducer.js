@@ -7,7 +7,7 @@ export const STUDENT = 'student';
 export const inicialState = {
     id: 1,
     nome: '',
-    data_nasc: 1321239600000,
+    data_nasc: Date.now(),
     serie: 1,
     endereco: {
         id: 2,

@@ -7,6 +7,7 @@ import {Redirect} from 'react-router-dom';
 import Header from '../components/header';
 import Api from '../api/api';
 import { cpfMask } from '../components/cpfMask';
+import { validaCPF } from '../components/validaCPF';
 
 
 export default function Mae() {
@@ -24,18 +25,20 @@ export default function Mae() {
 
         if(!/\S/.test(nome.current.value) || !/\S/.test(cpf.current.value)) {
             alert("Informe nome e CPF!")
-            return false;
+            return;
         }
-        if(cpf.current.value.length < 14) {
+
+        const cpfValid = validaCPF(cpf.current.value);
+        if(!cpfValid) {
             alert("CPF inválido!");
-            return false;
+            return;
         }
     
         const d = new Date(datePay.current.value); 
 
         if(d.valueOf() < (Date.now() - 86400000)) {
             alert("Informe uma data futura!");
-            return false;
+            return;
         }
     
         student.student.mae.nome = nome.current.value;

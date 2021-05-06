@@ -51,6 +51,10 @@ export default function Main() {
     }
 
     const advance = () => {
+        if(input.current.value.length == 0) {
+            alert("Informe o número da página!");
+            return;
+        }
         getPage(input.current.value - 1);
     }
 
@@ -87,10 +91,10 @@ export default function Main() {
                     <th>Nome</th>
                     <th>Data nasc</th>
                     <th>Série</th>
-                    <th>Endereço</th>
-                    <th>Mãe</th>
-                    <th colspan="2"><a href="#" onClick={() => 
-                        redirectTo("cadastro", null)}>Adicionar +</a></th>
+                    <th className="address-header">Endereço</th>
+                    <th className="mother-header">Mãe</th>
+                    <th colspan="2"><a onClick={() => 
+                        redirectTo("cadastro", null)}>+</a></th>
                 </tr>
                     {students.length > 0 && 
                     
@@ -99,10 +103,10 @@ export default function Main() {
                                 <td>{s.nome}</td>
                                 <td>{getDate(s.data_nasc)}</td>
                                 <td>{s.serie}</td>
-                                <td><a href="#" 
+                                <td className="address"><a href="#" 
                                     onClick={() => redirectTo("endereco", s)}
                                     >endereço</a></td>
-                                <td><a href="#" 
+                                <td className="mother"><a href="#" 
                                     onClick={() => redirectTo("mae", s)}
                                     >Mãe</a></td>
                                 <td><img src={edit} onClick={() => redirectTo("estudante", s)} 

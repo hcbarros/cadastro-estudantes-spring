@@ -34,6 +34,12 @@ header img {
     height: 35px;
 }
 
+.app th[colspan] {
+    font-size: 35px;
+    cursor: pointer;
+    color: blue;
+}
+
 .app table, .app th, .app td {
     border: 1px solid #aaa;
     border-collapse: collapse;
@@ -46,7 +52,7 @@ header img {
     padding-inline: 5px;
 }
 
-.mae, .endereco {
+.mae, .endereco, .cadastro {
     width: 100%;
 }
 
@@ -54,6 +60,7 @@ fieldset {
     margin: 0 auto;
     width: 900px;
     padding-left: 20px;
+    margin-bottom: 35px;
 }
 
 .field-input {
@@ -88,7 +95,8 @@ legend {
     color: #666;
 }
 
-.mae tr, .endereco tr {
+.mae tr, .endereco tr,
+.cadastro tr {
     height: 50px;
 }
 
@@ -163,6 +171,7 @@ legend {
 .page-links {
     display: flex;
     margin-top: -70px;
+    margin-bottom: 30px;
 }
 
 .link-previous, .link-next,
@@ -183,6 +192,10 @@ legend {
     border-width: 0 0 2px 2px;
 }
 
+.link-previous div {
+    margin-left: 0;
+}
+
 .link-next {
     margin-left: 30px;
 }
@@ -194,14 +207,14 @@ legend {
 
 .avancar {
     margin-left: 30px;
-    /* font-weight: bold; */
 }
 
 .avancar input {
     border: none;
     border: 1px solid #666;
+    outline: none;
     margin-left: 10px;
-    width: 150px;
+    width: 115px;
     height: 20px;
 }
 
@@ -211,7 +224,6 @@ legend {
     margin-left: 20px;
     background-color: #fff;
     cursor: pointer;
-    /* font-weight: bold; */
 }
 
 .page-links button:hover {
@@ -227,18 +239,33 @@ legend {
     }
 }
 
-@media (max-width: 690px) {
+@media (max-width: 850px) {
+    .page-links {
+        display: block;
+    }
+    .link-next, .avancar, 
+    .page-links button {
+        margin-left: 10%;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 710px) {
     .field-input input[type=text] {
-        width: 60vw;
+        width: 50vw;
     }    
     fieldset {
-        width: 70vw;
+        width: 60vw;
+    }
+    .address-header, .mother-header,
+    .address, .mother {
+        display: none;
     }
 }
 
 @media (max-width: 480px) {
     .field-input input[type=text] {
-        width: 50vw;
+        width: 40vw;
     }   
     .buttons-editar button {
         width: 27vw;
@@ -247,13 +274,16 @@ legend {
 
 @media (max-width: 350px) {
     .field-input input[type=text] {
-        width: 40vw;
+        width: 30vw;
     }    
     .field-input input[type=date] {
-        width: 40vw;
+        width: 30vw;
     }    
     fieldset {
-        width: 40vw;
+        width: 35vw;
+    }
+    .avancar input{
+        width: 36%;
     }
 
 }
