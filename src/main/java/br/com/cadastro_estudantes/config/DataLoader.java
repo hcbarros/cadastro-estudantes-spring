@@ -38,7 +38,7 @@ public class DataLoader {
 			Endereco endereco = new Endereco("52041-170", "Rua Fernando César", 65, 
 					null, "Encruzilhada", "Recife", "PE");
 			Mae mae = new Mae("Andrea Curie","540.571.030-07", datePay);
-			Estudante e1 = new Estudante("Marie Curie", new Date(Long.valueOf("-3234470400000")), 3 , endereco, mae);
+			Estudante e1 = new Estudante("Marie Curie", new Date(Long.valueOf("-3223575624000")), 3 , endereco, mae);
 			
 			endereco = new Endereco("58042-110", "Rua Vandick Pinto Filho Filgueiras", 601, 
 					"Apt. 102", "Tambauzinho", "João Pessoa", "PB");
