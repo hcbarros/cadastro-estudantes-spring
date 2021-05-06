@@ -20,7 +20,7 @@ header img {
 
 .app table {
     margin: 100px auto;
-    width: 900px;
+    width: 80%;
     text-align: center;
 }
 
@@ -31,16 +31,13 @@ header img {
 }
 
 .app tr {
-    height: 30px;
+    height: 35px;
 }
 
 .app table, .app th, .app td {
-    border: 1px solid black;
+    border: 1px solid #aaa;
     border-collapse: collapse;
-}
-
-.app td a {
-    text-decoration: none;
+    border-inline: none;
 }
 
 .app td img {
@@ -162,6 +159,66 @@ legend {
 .hide {
     display: none;
 }
+
+.page-links {
+    display: flex;
+    margin-top: -70px;
+}
+
+.link-previous, .link-next,
+.link-next-initial {
+    display: flex;
+    margin-left: 10%;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
+.link-previous div, .link-next div,
+.link-next-initial div {
+    transform: rotate(-135deg);
+    margin-top: 7px;
+    margin-left: 10px;
+    border-color: blue;
+    border-width: 0 0 2px 2px;
+}
+
+.link-next {
+    margin-left: 30px;
+}
+
+.link-previous div {
+    transform: rotate(45deg);
+    margin-right: 8px;
+}
+
+.avancar {
+    margin-left: 30px;
+    /* font-weight: bold; */
+}
+
+.avancar input {
+    border: none;
+    border: 1px solid #666;
+    margin-left: 10px;
+    width: 150px;
+    height: 20px;
+}
+
+.page-links button {
+    border: none;
+    border: 1px solid #666;
+    margin-left: 20px;
+    background-color: #fff;
+    cursor: pointer;
+    /* font-weight: bold; */
+}
+
+.page-links button:hover {
+    background-color: #e07c6e;
+    color:#fff;
+}
+
 
 
 @media (max-width: 1000px) {

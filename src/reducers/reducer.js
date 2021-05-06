@@ -4,7 +4,7 @@ import {combineReducers} from 'redux';
 
 export const STUDENT = 'student';
 
-const inicialState = {
+export const inicialState = {
     id: 1,
     nome: '',
     data_nasc: 1321239600000,
@@ -23,7 +23,7 @@ const inicialState = {
         id: 3,
         nome: '',
         cpf: '965.678.390-58',
-        data_pagamento: 1617505200000
+        data_pagamento: Date.now() + 100000000
     }
 }
 

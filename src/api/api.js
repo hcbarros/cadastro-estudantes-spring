@@ -17,9 +17,9 @@ export default class Api {
     }
 
 
-    static async getStudants() {
+    static async getStudants(page) {
           
-          return await axios.get(`https://cadastro-estudantes.herokuapp.com/estudante`)
+          return await axios.get(`https://cadastro-estudantes.herokuapp.com/estudante/list/${page}`)
                 .then(async (resp) => {
                     return await resp.data;
                 })
@@ -113,6 +113,17 @@ export default class Api {
               .catch(async (err) => {
                     return await err;
               });        
+    }
+
+    static async count() {
+          
+      return await axios.get(`https://cadastro-estudantes.herokuapp.com/estudante/count`)
+            .then(async (resp) => {
+                  return await resp.data;
+            })
+            .catch(async (err) => {
+                  return await err;
+            });        
     }
 
     
