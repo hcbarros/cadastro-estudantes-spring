@@ -25,7 +25,7 @@ DELETE/{id}
 Também pode ser acessada por meio da URL :
 ### https://cadastro-estudantes.herokuapp.com/estudante/
 
-Para testar toda a aplicacao e so acessar a seguinte URL: 
+Para testar toda a aplicação deve-se acessar a seguinte URL: 
 ### https://estudantes-react.herokuapp.com/
 
 Para executar o projeto Java, usando a linha de comando, 
