@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/cadastro-estudantes-spring/static/css/main.2be6fa0a.chunk.css",
+    "main.js": "/cadastro-estudantes-spring/static/js/main.3faccdb2.chunk.js",
+    "main.js.map": "/cadastro-estudantes-spring/static/js/main.3faccdb2.chunk.js.map",
+    "runtime-main.js": "/cadastro-estudantes-spring/static/js/runtime-main.ac967604.js",
+    "runtime-main.js.map": "/cadastro-estudantes-spring/static/js/runtime-main.ac967604.js.map",
+    "static/js/2.07853a3e.chunk.js": "/cadastro-estudantes-spring/static/js/2.07853a3e.chunk.js",
+    "static/js/2.07853a3e.chunk.js.map": "/cadastro-estudantes-spring/static/js/2.07853a3e.chunk.js.map",
+    "static/js/3.e9d1f6b5.chunk.js": "/cadastro-estudantes-spring/static/js/3.e9d1f6b5.chunk.js",
+    "static/js/3.e9d1f6b5.chunk.js.map": "/cadastro-estudantes-spring/static/js/3.e9d1f6b5.chunk.js.map",
+    "index.html": "/cadastro-estudantes-spring/index.html",
+    "static/css/main.2be6fa0a.chunk.css.map": "/cadastro-estudantes-spring/static/css/main.2be6fa0a.chunk.css.map",
+    "static/js/2.07853a3e.chunk.js.LICENSE.txt": "/cadastro-estudantes-spring/static/js/2.07853a3e.chunk.js.LICENSE.txt",
+    "static/media/edit.fb8638eb.png": "/cadastro-estudantes-spring/static/media/edit.fb8638eb.png",
+    "static/media/loader.d69456dd.gif": "/cadastro-estudantes-spring/static/media/loader.d69456dd.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ac967604.js",
+    "static/js/2.07853a3e.chunk.js",
+    "static/css/main.2be6fa0a.chunk.css",
+    "static/js/main.3faccdb2.chunk.js"
+  ]
+}
